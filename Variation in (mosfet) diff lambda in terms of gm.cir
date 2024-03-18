@@ -1,0 +1,25 @@
+* D:\Anu\CMOS\Variation in (mosfet) diff lambda in terms of gm.asc
+
+* Variation in  (output resistance) - Analog Mosfet exercise
+* Here VG value is Varying from 0 to 2.5V, VDD is kept constant
+M1 D G 0 N001 NMOS1
+VDD D 0 5
+VG G 0
+.model NMOS NMOS
+.model PMOS PMOS
+.lib C:\Users\Anumol\Documents\LTspiceXVII\lib\cmp\standard.mos
+
+.model nmos1 nmos (vto=0.7V L=2u W=10u lambda=0.03 kp=50u gamma=0.0 )
+
+.meas ron FIND 1/d(Id(M1)) WHEN V(G)=2.2V
+.meas ID FIND Id(M1) WHEN V(G)=2.2V
+.meas gm FIND d(Id(M1)) WHEN V(G)=2.2V
+
+
+.dc VG 0 2.5 0.1
+.backanno
+.end
+* By Simulation
+* ron: 1/d(id(m1))=2398.8 at 2.2\n
+*id: id(m1)=0.000323437 at 2.2\n
+*gm: d(id(m1))=0.000416875 at 2.2
